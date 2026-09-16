@@ -31,3 +31,10 @@ class UserRegisterationForm(forms.Form):
         if pw1 and pw2: # checking if they exist
             if pw1 != pw2:
                 raise ValidationError('Passwords must match!')
+
+
+
+class UserLoginForm(forms.Form):
+
+    username = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'your username'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control', 'placeholder':'your password'}))
