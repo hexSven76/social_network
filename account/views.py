@@ -5,7 +5,7 @@ from django.contrib.auth.models import  User
 from django.contrib import messages
 
 
-class RegisterView(View):
+class UserRegisterView(View):
     
     form_class = UserRegisterationForm
     template_name = 'account/register.html'
@@ -23,3 +23,4 @@ class RegisterView(View):
             return redirect('home:home')
 
         return render(request, self.template_name, {"form":form})
+
