@@ -6,7 +6,6 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout, views as auth_views
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
-from home.models import Post
 
 
 class UserRegisterView(View):
@@ -79,9 +78,9 @@ class UserProfileView(LoginRequiredMixin, View):
     def get(self, request, user_id):
         user = get_object_or_404(User, id=user_id) # production mode
         # user = User.objects.get(id=user_id)
-
+        posts = user.posts.all()
         # posts = get_list_or_404(Post, user=user) # production mode (problem: will 404 if user exists but has zero posts)
-        posts = Post.objects.filter(user=user)
+        # posts = Post.objects.filter(user=user)  # access posts using Post model
         
         return render(request, 'account/profile.html', {'user':user, 'posts':posts})
 
